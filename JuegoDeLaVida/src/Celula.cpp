@@ -7,22 +7,33 @@ sf::RectangleShape& Celula::getCuadrado()
 
 void Celula::cambiaEstado()
 {
-    //TODO
+    if(m_estado == true){
+        m_estado = false;
+        m_cuadrado.setFillColor(sf::Color::Black);
+    }
+    else{
+        m_estado = true;
+        m_cuadrado.setFillColor(sf::Color::White);
+    }
 }
 
 bool Celula::isViva()
 {
-    //TODO
-    return false;
+    return m_estado;
 }
 
 void Celula::setEstadoFuturo(bool estado)
 {
-    //TODO
+    m_estadoFuturo = estado;
 }
 
 bool Celula::getEstadoFuturo()
 {
-    //TODO
-    return false;
+    return m_estadoFuturo;
+}
+
+int Celula::unVecino(){
+    if(m_estado){
+        return 1;
+    } return 0;
 }

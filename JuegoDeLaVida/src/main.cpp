@@ -8,6 +8,8 @@
 
 void calculaEstadosFuturos(const std::vector<Celula*>& celulas);
 
+int vecinosVivos(int i, const std::vector<Celula*>& celulas);
+
 int main()
 {
 	// Se crea la ventana de la aplicación
@@ -129,4 +131,144 @@ int main()
 void calculaEstadosFuturos(const std::vector<Celula*>& celulas)
 {
 	//TODO
+	for(int i = 0; i < 25; i++){
+		Celula* cel = celulas.at(i);
+		int vecinos = vecinosVivos(i, celulas);
+		if(cel->isViva()){
+			if(vecinos < 2){
+				cel->setEstadoFuturo(false);
+			}else if (vecinos < 4){
+				cel->setEstadoFuturo(true);
+			}else{
+				cel->setEstadoFuturo(false);
+			}
+			
+		}else{
+			if((vecinos == 3)){
+				cel->setEstadoFuturo(true);
+			}else{
+				cel->setEstadoFuturo(false);
+			}
+		}
+	}
+}
+
+/**
+ * @brief Función auxiliar que se usa para calcular el número de vecinos vivos de una célula
+ * dado un índice del vector celulas. Devuelve un entero que indica cuántos de los 8 o menos
+ * vecinos que tiene la célula están vivos
+ */
+int vecinosVivos(int i, const std::vector<Celula*>& celulas){
+	int vecinos = 0;
+	switch (i){
+		case 0:{
+			Celula* c1 = celulas.at(1);
+			Celula* c5 = celulas.at(5);
+			Celula* c6 = celulas.at(6);
+			vecinos += c1->unVecino();
+			vecinos += c5->unVecino();
+			vecinos += c6->unVecino();
+			return vecinos;
+		}
+		case 4:{
+			Celula* c3 = celulas.at(3);
+			Celula* c8 = celulas.at(8);
+			Celula* c9 = celulas.at(9);
+			vecinos += c3->unVecino();
+			vecinos += c8->unVecino();
+			vecinos += c9->unVecino();
+			return vecinos;
+		}
+		case 20:{
+			Celula* c15 = celulas.at(15);
+			Celula* c16 = celulas.at(16);
+			Celula* c21 = celulas.at(21);
+			vecinos += c15->unVecino();
+			vecinos += c16->unVecino();
+			vecinos += c21->unVecino();
+			return vecinos;
+		}
+		case 24:{
+			Celula* c18 = celulas.at(18);
+			Celula* c19 = celulas.at(19);
+			Celula* c23 = celulas.at(23);
+			vecinos += c18->unVecino();
+			vecinos += c19->unVecino();
+			vecinos += c23->unVecino();
+			return vecinos;
+		}
+		default:{
+			if (i < 4){
+				Celula* v1 = celulas.at(i-1);
+				Celula* v2 = celulas.at(i+1);
+				Celula* v3 = celulas.at(i+4);
+				Celula* v4 = celulas.at(i+5);
+				Celula* v5 = celulas.at(i+6);
+				vecinos += v1->unVecino();
+				vecinos += v2->unVecino();
+				vecinos += v3->unVecino();
+				vecinos += v4->unVecino();
+				vecinos += v5->unVecino();
+				return vecinos;
+			}
+			else if (i > 20){
+				Celula* v1 = celulas.at(i-6);
+				Celula* v2 = celulas.at(i-5);
+				Celula* v3 = celulas.at(i-4);
+				Celula* v4 = celulas.at(i-1);
+				Celula* v5 = celulas.at(i+1);
+				vecinos += v1->unVecino();
+				vecinos += v2->unVecino();
+				vecinos += v3->unVecino();
+				vecinos += v4->unVecino();
+				vecinos += v5->unVecino();
+				return vecinos;
+			}
+			else if ((i % 5) == 0){
+				Celula* v1 = celulas.at(i-5);
+				Celula* v2 = celulas.at(i-4);
+				Celula* v3 = celulas.at(i+1);
+				Celula* v4 = celulas.at(i+5);
+				Celula* v5 = celulas.at(i+6);
+				vecinos += v1->unVecino();
+				vecinos += v2->unVecino();
+				vecinos += v3->unVecino();
+				vecinos += v4->unVecino();
+				vecinos += v5->unVecino();
+				return vecinos;
+			}
+			else if (((i + 1) % 5) == 0){
+				Celula* v1 = celulas.at(i-6);
+				Celula* v2 = celulas.at(i-5);
+				Celula* v3 = celulas.at(i-1);
+				Celula* v4 = celulas.at(i+4);
+				Celula* v5 = celulas.at(i+5);
+				vecinos += v1->unVecino();
+				vecinos += v2->unVecino();
+				vecinos += v3->unVecino();
+				vecinos += v4->unVecino();
+				vecinos += v5->unVecino();
+				return vecinos;
+			}
+			else{
+				Celula* v1 = celulas.at(i-6);
+				Celula* v2 = celulas.at(i-5);
+				Celula* v3 = celulas.at(i-4);
+				Celula* v4 = celulas.at(i-1);
+				Celula* v5 = celulas.at(i+1);
+				Celula* v6 = celulas.at(i+4);
+				Celula* v7 = celulas.at(i+5);
+				Celula* v8 = celulas.at(i+6);
+				vecinos += v1->unVecino();
+				vecinos += v2->unVecino();
+				vecinos += v3->unVecino();
+				vecinos += v4->unVecino();
+				vecinos += v5->unVecino();
+				vecinos += v6->unVecino();
+				vecinos += v7->unVecino();
+				vecinos += v8->unVecino();
+				return vecinos;
+			}
+		}
+	}
 }

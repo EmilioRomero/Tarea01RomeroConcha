@@ -66,5 +66,11 @@ class Celula
          * @returns true si el estaod futuro es vivo, false en otro caso
          */
         bool getEstadoFuturo();
+
+        /**
+         * @brief Función auxiliar que devuelve 1 si la célula está viva y 0 si está muerta.
+         * Se usa para calcular el número de vecinos vivos de una célula
+         */
+        int unVecino();
 };
 #endif

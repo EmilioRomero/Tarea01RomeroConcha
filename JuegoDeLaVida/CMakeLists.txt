@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.28)
 project(juego LANGUAGES CXX)
 
+set(SFML_STATIC_LIBRARIES ON)
+
 
 # Estándar de C++
 set(CMAKE_CXX_STANDARD 20)
